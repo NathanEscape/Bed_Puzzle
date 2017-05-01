@@ -1,11 +1,10 @@
-#include<Button.h>
 
 const int buttonPin1 = 2; 
 const int buttonPin2 = 3; 
 const int buttonPin3 = 4; // the pin that the pushbutton is attached to
-const int correctLedPin = 6;       // the pin that the LED is attached to
+const int indicatorLedPin = 6;       // the pin that the LED is attached to
 const int wrongLedPin = 5;
-const int motorPin = 7;// the pin that the LED is attached to
+const int rightLedPin = 7;// the pin that the LED is attached to
 // variables that are changed by the program
 int buttonPushCounter = 0;   // counter for the number of button presses
 int val = 0;
@@ -24,9 +23,9 @@ void setup() {
   pinMode(buttonPin1, INPUT);
   pinMode(buttonPin2, INPUT);
   pinMode(buttonPin3, INPUT);
-  pinMode(correctLedPin, OUTPUT);
+  pinMode(indicatorLedPin, OUTPUT);
   pinMode(wrongLedPin, OUTPUT);
-  pinMode(motorPin, OUTPUT);
+  pinMode(rightLedPin, OUTPUT);
   Serial.begin(9600);
 }
 
@@ -47,9 +46,9 @@ void loop() {
       // it was just pressed
       buttonPushCounter = buttonPushCounter + 1;
       Serial.println(buttonPushCounter);
-      digitalWrite(correctLedPin, HIGH);
+      digitalWrite(indicatorLedPin, HIGH);
       delay(100);
-      digitalWrite(correctLedPin, LOW);
+      digitalWrite(indicatorLedPin, LOW);
       if(val == 0)
       {
         val = 1;
@@ -69,9 +68,9 @@ if (bS2 != lBS2) {
       // it was just pressed
       buttonPushCounter = buttonPushCounter + 1;
       Serial.println(buttonPushCounter);
-      digitalWrite(correctLedPin, HIGH);
+      digitalWrite(indicatorLedPin, HIGH);
       delay(100);
-      digitalWrite(correctLedPin, LOW);
+      digitalWrite(indicatorLedPin, LOW);
       if(val == 1)
       {
         val = 2;
@@ -92,9 +91,9 @@ if (bS3 != lBS3) {
       // it was just pressed
       buttonPushCounter = buttonPushCounter + 1;
       Serial.println(buttonPushCounter);
-      digitalWrite(correctLedPin, HIGH);
+      digitalWrite(indicatorLedPin, HIGH);
       delay(100);
-      digitalWrite(correctLedPin, LOW);
+      digitalWrite(indicatorLedPin, LOW);
       if(val == 2)
       {
         val = 3;
@@ -111,12 +110,12 @@ if (bS3 != lBS3) {
 
 if(val == 6 && buttonPushCounter == 6)
 {
-  digitalWrite(correctLedPin, LOW);
+  digitalWrite(indicatorLedPin, LOW);
   val = 0;
   buttonPushCounter = 0;
-  digitalWrite(motorPin, HIGH);
+  digitalWrite(rightLedPin, HIGH);
   delay(3000);
-  digitalWrite(motorPin, LOW);
+  digitalWrite(rightLedPin, LOW);
 }
 
 else if(val != 6 && buttonPushCounter == 6)
